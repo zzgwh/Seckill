@@ -1,7 +1,5 @@
 package org.seckill.dao;
 
-import static org.junit.Assert.*;
-
 import java.util.Date;
 import java.util.List;
 
