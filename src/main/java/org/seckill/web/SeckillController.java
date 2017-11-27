@@ -28,14 +28,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *         2017年5月30日
  */
 @Controller // @Service @Component
-@RequestMapping("/seckill") // url:/模块/资源/{id}/细分 /seckill/list
+@RequestMapping("") // url:/模块/资源/{id}/细分 /seckill/list
 public class SeckillController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private SeckillService seckillService;
 
-	@RequestMapping(name = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model) {
 		// 获取列表页
 		// list.jsp + model = ModelAndView
@@ -43,7 +43,7 @@ public class SeckillController {
 		model.addAttribute("seckills", seckills);
 		return "list"; // WEB-INF/jsp/list.jsp look at spring-web.xml
 	}
-
+	
 	/**
 	 * get seckill by seckillId
 	 * 
@@ -66,7 +66,7 @@ public class SeckillController {
 
 		return "detail";
 	}
-
+	
 	// ajax return json
 	@RequestMapping(value = "/{seckillId}/exposer", method = RequestMethod.POST, produces = {
 			"application/json;charset=UTF-8" }) // http context 告诉浏览器返回类型为json

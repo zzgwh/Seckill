@@ -7,6 +7,11 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>seckill Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
   <dependencies>
   	<!-- 使用junit4 junit3是使用编程方式写单元测试，junit4是使用注解方式写单元测试 -->
     <dependency>
@@ -132,6 +137,39 @@
 	    <artifactId>spring-test</artifactId>
 	    <version>4.3.8.RELEASE</version>
 	</dependency>
+
+	 <!--aop 相关依赖-->
+  	<!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+  	<dependency>
+	  <groupId>org.springframework</groupId>
+	  <artifactId>spring-aop</artifactId>
+	  <version>4.3.8.RELEASE</version>
+  	</dependency>
+	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
+	  <dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-aspects</artifactId>
+		  <version>4.3.8.RELEASE</version>
+	  </dependency>
+	  <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
+  	<dependency>
+	  <groupId>org.aspectj</groupId>
+	  <artifactId>aspectjrt</artifactId>
+	  <version>1.8.11</version>
+  	</dependency>
+	  <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+	  <dependency>
+		  <groupId>org.aspectj</groupId>
+		  <artifactId>aspectjweaver</artifactId>
+		  <version>1.8.11</version>
+	  </dependency>
+	  <!-- https://mvnrepository.com/artifact/cglib/cglib -->
+	  <dependency>
+		  <groupId>cglib</groupId>
+		  <artifactId>cglib</artifactId>
+		  <version>3.2.2</version>
+	  </dependency>
+
   </dependencies>
   <build>
     <finalName>seckill</finalName>
