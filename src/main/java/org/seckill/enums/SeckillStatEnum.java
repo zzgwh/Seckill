@@ -10,7 +10,7 @@ public enum SeckillStatEnum {
 	END(0,"秒杀结束"),
 	REPEAT_KILL(-1,"重复秒杀"),
 	INNER_ERROR(-2,"系统异常"),
-	DATE_REWRITE(-3,"数据篡改");
+	DATA_REWRITE(-3,"数据篡改");
 	private int state;
 	private String StateInfo;
 	
@@ -35,7 +35,7 @@ public enum SeckillStatEnum {
 		StateInfo = stateInfo;
 	}
 	
-	public static SeckillStatEnum stateof(int index) {
+	public static SeckillStatEnum stateOf(int index) {
 		for (SeckillStatEnum state : values()) {
 			if(state.getState() == index) {
 				return state;

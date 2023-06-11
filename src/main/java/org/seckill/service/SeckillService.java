@@ -34,7 +34,7 @@ public interface SeckillService {
 	Seckill getById(long seckillId);
 	
 	/**
-	 * 秒杀开启时输出秒杀接口地址，否则输出系统时间和秒杀时间
+	 * 秒杀开启时输出秒杀接口地址，否则输出系统时间和秒杀时间，避免用户根据规则猜出秒杀地址从而在秒杀开启前执行秒杀
 	* @param seckillId 
 	* return Exposer 
 	* @throws
@@ -45,10 +45,18 @@ public interface SeckillService {
 	 * 执行秒杀操作
 	* @param seckillId
 	* @param userPhone
-	* @param md5 void 
+	* @param md5 验证秒杀地址是否被篡改 
 	* @throws RepeatKillException,SeckillCloseException 这两个异常是为了明确告诉用户异常是是什么
 	 SeckillException 此异常告诉用户秒杀错误
 	 */
 	SeckillExecution executeSeckill(long seckillId, long userPhone, String md5)
 	throws SeckillException,RepeatKillException,SeckillCloseException;
+	
+	/**
+     * 执行秒杀操作，存储过程
+     * @param seckillId
+     * @param userPhone
+     * @param md5
+     */
+    SeckillExecution executeSeckillProcedure(long seckillId, long userPhone, String md5);
 }

@@ -14,6 +14,7 @@ var seckill = {
     },
 
     handleSeckill: function(seckillId, node){
+    	//获取秒杀地址，控制显示逻辑，执行秒杀
         node.hide()
             .html('<button class="btn bg-primary btn-lg" id="killBtn">start seckill</button>');
         $.post(seckill.URL.exposer(seckillId),{}, function(result){
@@ -22,24 +23,30 @@ var seckill = {
             if(result && result['success']){
                 var exposer = result['data'];
                 if(exposer['exposed']){
-                    //start seckill
-                    //get seckill address
+                    //start seckill 开启秒杀
+                    //get seckill address 获取秒杀地址
                     var md5 = exposer['md5'];
                     var killUrl = seckill.URL.execution(seckillId, md5);
                     console.log("killUrl:"+killUrl);
                     //只绑定一次点击事件
                     $('#killBtn').one('click', function(){
+                    	//执行秒杀请求
+                    	//1: 先禁用按钮
                         $(this).addClass('disabled');
+                        //2： 发送秒杀请求执行秒杀
                         $.post(killUrl, {}, function(result){
                             if(result && result['success']){
                                 var killResult = result['data'];
-                                var status = killResult['status'];
-                                var stateInfo = killResult['statusInfo'];
+                                var state = killResult['state'];
+                                var stateInfo = killResult['stateInfo'];
 
+                                //3: 显示秒杀结果
                                 node.html('<span class="label label-success">' + stateInfo + '</span>');
                             }
                         });
                     });
+                    
+                    //显示秒杀按钮
                     node.show();
                 }else{
                     //do not start seckill
@@ -68,11 +75,13 @@ var seckill = {
         if(nowTime > endTime){
             seckillBox.html('seckill is over');
         }else if(nowTime < startTime){
+        	//秒杀未开始，计时事件绑定
             var killTime = new Date(startTime + 1000);
-            seckillBox.countdown(killTime, function(event){
-                var format = event.strftime('Distance seckill Time： %DDay %HHour %MMin %SSec');
+            seckillBox.countdown(killTime, function(event){//每隔1s倒计时事件
+                var format = event.strftime('秒杀倒计时： %D天 %H时 %M分 %S秒');
                 seckillBox.html(format);
-            }).on('finish.countdown', function(){
+            }).on('finish.countdown', function(){ //计时结束事件
+            	//获取秒杀地址，控制显示逻辑，执行秒杀操作
                 seckill.handleSeckill(seckillId, seckillBox);
             });
         }else{
@@ -108,6 +117,7 @@ var seckill = {
             var endTime = params['endTime'];
             var seckillId = params['seckillId'];
 
+            //登录后
             $.get(seckill.URL.now(), {}, function (result) {
                 if(result && result['success']){
                     var nowTime = result['data'];

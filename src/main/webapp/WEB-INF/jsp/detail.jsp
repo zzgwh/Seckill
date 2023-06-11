@@ -45,11 +45,14 @@
         </div>
     </div>
 </div>
-<script src="/resources/script/jquery/js/jquery.min.js"></script>
-<script src="/resources/script/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/script/cookie/js/cookie.js"></script>
-<script src="https://cdn.bootcss.com/jquery.countdown/2.1.0/jquery.countdown.js"></script>
-<script type="text/javascript" src="/resources/script/seckill.js"></script>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.countdown/2.1.0/jquery.countdown.min.js"></script>
+<!-- 开始编写交互逻辑 -->
+<script src="${pageContext.request.contextPath}/resources/script/seckill.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(function (){
         seckill.detail.init({
